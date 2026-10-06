@@ -1,0 +1,97 @@
+# Secure-Surf & Hunt 🛡️
+
+**Secure-Surf** is a comprehensive domain credibility and website security tool available as both a web application (**Hunt**) and a Chrome browser extension (**Secure-Surf**). 
+
+The application analyzes website domains, queries malware and WHOIS data in real time using external security APIs, and calculates a dynamic **Trust Score (0-100)** to help users identify potentially unsafe or malicious websites before interacting with them.
+
+---
+
+## 🌟 Key Features
+
+- **Real-Time Security Analysis**: Evaluates domain age, registration metadata, and threat history using WHOIS and VirusTotal APIs.
+- **Dynamic Trust Score (0-100)**: Calculates an intuitive trust rating based on domain health, blacklisting status, and security metrics.
+- **Chrome Extension (`Secure-Surf`)**: Provides automated on-the-fly trust assessment for websites directly while browsing.
+- **Web Checker Tool (`Hunt`)**: Dedicated web interface allowing users to manually look up any domain and view detailed security reports.
+
+---
+
+## 📁 Repository Structure
+
+```text
+.
+├── extension/          # Secure-Surf Chrome Extension files (manifest.json, background/popup scripts)
+├── api/                # api calls - whois and virus total
+├── public/             # Front-end
+├── utils/              # score calcualtor for extension
+├── package.json        # Project dependencies and configuration
+└── README.md           # Project documentation
+```
+
+---
+
+## 🛠️ Built With
+
+- **APIs**: [VirusTotal API](https://www.virustotal.com/), [WHOIS API](https://whois.whoisxmlapi.com/)
+- **Extension Platform**: Chrome Extension API (Manifest V3)
+- **Web Platform**: HTML5, CSS3, JavaScript / Node.js
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have valid API keys from:
+1. **VirusTotal API**
+2. **WHOIS API**
+
+### Setup Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/hkdprojects/Hunt-DigitalFenceScore.git
+   cd secure-surf-hunt
+   ```
+
+2. **Configure Environment Variables**
+   Create a `.env` file in the root directory and add your API keys:
+   ```env
+   VIRUSTOTAL_API_KEY=your_virustotal_api_key
+   WHOIS_API_KEY=your_whois_api_key
+   ```
+
+3. **Install Dependencies & Run Web App (Hunt)**
+   ```bash
+   npm install
+   npm start
+   ```
+
+---
+
+## 🧩 Installing the Chrome Extension (Secure-Surf)
+
+1. Open **Google Chrome** and navigate to `chrome://extensions/`.
+2. Enable **Developer mode** using the toggle in the top-right corner.
+3. Click on the **Load unpacked** button.
+4. Select the `extension/` directory from this project repository.
+5. The **Secure-Surf** icon will now appear in your browser toolbar!
+
+---
+
+## 📊 Trust Score & Security Breakdown
+
+The Trust Score (`webscore`) determines the safety status, indicator colors, and user alerts dynamically:
+
+| Score Range | Status Declaration | Indicator Color | Expression Class | User Alert |
+| :--- | :--- | :--- | :--- | :--- |
+| **< 50** | `Not Safe` | 🔴 Red (`#ff1d1d`) | `expression-Bad` | *"This website is not safe to visit, low security score"* |
+| **50 - 64** | `Less secure` | 🟠 Orange (`#ffa500`) | `expression-notBad` | *"This website is less safe to visit"* |
+| **65 - 74** | `Moderate secure` | 🟡 Yellow (`#bbbb18` / `#ffff00`) | `expression-ok` | *"This website might not be safe to visit (moderate safety)"* |
+| **75 - 79** | `Not Fully Safe` | 🟢 Lime Green (`#adff2f` / `#b4ff00`) | `expression-Good` | *"This website is safe to visit but not fully"* |
+| **≥ 80** | `Safe` | 🟢 Green (`#01b501` / `#32ff00`) | `expression-VeryGood` | *"This website is safe to visit"* |
+
+---
+
+## 📜 License
+
+This project is open-source and available under the [MIT License](LICENSE).
